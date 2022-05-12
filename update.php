@@ -1,10 +1,12 @@
 <?php
-include "conn.php";
+include 'conn.php';
 if(isset($_POST['done'])){
+    $id = $_GET['id'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $q = "INSERT INTO `crudtable`(`username`, `password`) VALUES ('$username','$password')";
+    $q = "update crudtable set id = $id,username = '$username',password = '$password' where id=$id";
     $query = mysqli_query($conn,$q);
+    header('location:display.php');
 }
 ?>
 <!DOCTYPE html>
@@ -25,7 +27,7 @@ if(isset($_POST['done'])){
         <form action="" method="POST">
             <div class="card">
                <br> <div class="card-header bg-dark">
-                    <h1 class="text-white text-center">Insert Opertaion</h1>
+                    <h1 class="text-white text-center">Update Opertaion</h1>
                 </div>
                 <label for="username">Username</label>
             <input type="text" name="username" class="form-control"><br>
